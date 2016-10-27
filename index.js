@@ -4,6 +4,7 @@ var allowedPolicies = [
 	'child-src',
 	'connect-src',
 	'default-src',
+	'disown-opener',
 	'font-src',
 	'form-action',
 	'frame-ancestors',
@@ -20,7 +21,8 @@ var allowedPolicies = [
 	'script-src',
 	'strict-dynamic',
 	'style-src',
-	'upgrade-insecure-requests'
+	'upgrade-insecure-requests',
+	'worker-src'
 ];
 
 /**
@@ -30,7 +32,7 @@ var allowedPolicies = [
  */
 function buildCSPString(policies, reportUri){
 	var cspString = Object.keys(policies).map(function(policyName){
-		if(policies[policyName].length === 0){
+		if(policies[policyName] === true || policies[policyName].length === 0){
 			return policyName;
 		}
 		return policyName + ' ' + policies[policyName].join(' ');
@@ -59,7 +61,9 @@ function csp(params){
 	// filter disallowed policies
 	policies = Object.keys(params.policies).reduce(function(policies, policyName){
 		if(allowedPolicies.indexOf(policyName) > -1){
-			policies[policyName] = params.policies[policyName];
+			if(params.policies[policyName] !== false){
+				policies[policyName] = params.policies[policyName];
+			}
 		}
 		return policies;
 	}, {});
