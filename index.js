@@ -30,7 +30,7 @@ var allowedPolicies = [
  */
 function buildCSPString(policies, reportUri){
 	var cspString = Object.keys(policies).map(function(policyName){
-		if(policies[policyName].length === 0){
+		if(policies[policyName] === true || policies[policyName].length === 0){
 			return policyName;
 		}
 		return policyName + ' ' + policies[policyName].join(' ');
@@ -59,6 +59,10 @@ function csp(params){
 	// filter disallowed policies
 	policies = Object.keys(params.policies).reduce(function(policies, policyName){
 		if(allowedPolicies.indexOf(policyName) > -1){
+			if(params.policies[policyName] === false){
+				return policies;
+			}
+
 			policies[policyName] = params.policies[policyName];
 		}
 		return policies;
