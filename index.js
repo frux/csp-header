@@ -59,11 +59,9 @@ function csp(params){
 	// filter disallowed policies
 	policies = Object.keys(params.policies).reduce(function(policies, policyName){
 		if(allowedPolicies.indexOf(policyName) > -1){
-			if(params.policies[policyName] === false){
-				return policies;
+			if(params.policies[policyName] !== false){
+				policies[policyName] = params.policies[policyName];
 			}
-
-			policies[policyName] = params.policies[policyName];
 		}
 		return policies;
 	}, {});
