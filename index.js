@@ -13,7 +13,9 @@ var allowedPolicies = [
 	'font-src',
 	'form-action',
 	'frame-ancestors',
-	'plugin-types'
+	'plugin-types',
+	'manifest-src',
+	'worker-src'
 ];
 
 /**
