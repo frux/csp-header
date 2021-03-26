@@ -3,6 +3,8 @@
 [![NPM downloads](https://img.shields.io/npm/dm/csp-header.svg?style=flat)](https://www.npmjs.com/package/csp-header)
 [![Dependency Status](https://img.shields.io/david/frux/csp-header.svg?style=flat)](https://david-dm.org/frux/csp-header)
 
+## ⚠️ ARCHIVED: Repository became a part of monorepo [frux/csp](https://github.com/frux/csp) ⚠️
+
 Content-Security-Policy header generator for Node.js.
 
 ## Install
